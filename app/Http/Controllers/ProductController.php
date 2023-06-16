@@ -14,6 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+
         $validated = request()->validate([
             'priceLessThan' => 'integer',
         ]);
@@ -22,6 +23,8 @@ class ProductController extends Controller
             $category = Category::where('name', request()->category)->first();
             if ($category) {
                 $products->where('category_id', $category->id);
+            }else{
+                $products->where('id',0);
             }
         }
         if (request()->filled('priceLessThan')) {
