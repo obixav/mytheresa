@@ -18,7 +18,7 @@ class APIFeaturesTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_json_sturcture_is_correct():void
+    public function test_json_sturcture_is_correct(): void
     {
         $response = $this->get('/products');
         $response->assertJsonStructure([
@@ -38,25 +38,25 @@ class APIFeaturesTest extends TestCase
         ]);
     }
 
-    public function test_category_filter_returns_category_products():void
+    public function test_category_filter_returns_category_products(): void
     {
         $response = $this->get('/products?category=boots');
         $response->assertJsonCount(3, $key = 'data')
-        ->assertJsonFragment([
-            'category'=>'boots'
-        ]);;
+            ->assertJsonFragment([
+                'category' => 'boots'
+            ]);;
     }
-    public function test_category_filter_returns_no_product_for_empty_category():void
+    public function test_category_filter_returns_no_product_for_empty_category(): void
     {
         $response = $this->get('/products?category=shirts');
         $response->assertJsonCount(0, $key = 'data');
     }
-    public function test_priceLessThan_filter_returns_products_with_price_less_than_or_equal_to_parameter():void
+    public function test_priceLessThan_filter_returns_products_with_price_less_than_or_equal_to_parameter(): void
     {
         $response = $this->get('/products?priceLessThan=75000');
         $response->assertJsonCount(2, $key = 'data');
     }
-    public function test_must_return_atmost_5_elements():void
+    public function test_must_return_atmost_5_elements(): void
     {
         $response = $this->get('/products');
         $response->assertJsonCount(5, $key = 'data');
