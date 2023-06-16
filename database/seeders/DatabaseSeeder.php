@@ -20,12 +20,13 @@ class DatabaseSeeder extends Seeder
             $category=Category::create(
                 [
                     'name'=>$category_name,
-                    'discount'=>$category_name=='boots'??30
+                    'discount'=>$category_name=='boots'?30:null
                 ]
             );
             if($category_name=='boots')
             {
                 $category->products()->createMany(
+               [
                 [
                     "sku" => "000001",
                     "name" => "BV Lean leather ankle boots",
@@ -42,6 +43,7 @@ class DatabaseSeeder extends Seeder
                     "price" => 7100000,
                     "discount"=>15
                 ]
+                ]
             );
             }
 
@@ -51,7 +53,6 @@ class DatabaseSeeder extends Seeder
                 [
                     "sku" => "000004",
                     "name" => "Naima embellished suede sandals",
-                    "category" => "sandals",
                     "price" => 7950000
                 ]
                 );
@@ -65,7 +66,7 @@ class DatabaseSeeder extends Seeder
                         "name" => "Nathane leather sneakers",
                         "price" => 5900000
                     ]
-                )
+                    );
             }
         }
     }
