@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Setup and build
+
 docker-compose up -d --build
 
 # Run Composer install
